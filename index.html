@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shannon C. Milder — Market Expansion & Revenue Growth Professional</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #1a3c5e;
+      --accent: #e87722;
+      --light-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #2d3748;
+      --muted: #718096;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --tag-bg: #eef2ff;
+      --tag-text: #3730a3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a5f8f 100%);
+      color: #fff;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; font-weight: 700; color: #fff;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+
+    .hero .tagline {
+      font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-contact {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-contact a {
+      color: rgba(255,255,255,0.9); text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      padding: 0.5rem 1.1rem; border-radius: 999px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: background 0.3s;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .hero-contact a:hover { background: rgba(255,255,255,0.25); }
+
+    /* ── TABS ── */
+    .tabs-bar {
+      background: var(--card-bg);
+      border-bottom: 2px solid var(--border);
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      padding: 1.1rem 1.8rem; font-size: 0.95rem; font-weight: 600;
+      color: var(--muted); border-bottom: 3px solid transparent;
+      transition: all 0.3s; white-space: nowrap;
+    }
+
+    .tab-btn:hover { color: var(--primary); }
+    .tab-btn.active { color: var(--primary); border-bottom-color: var(--accent); }
+
+    /* ── TABS CONTENT ── */
+    .tab-panel { display: none; animation: fadeIn 0.3s ease-in; }
+    .tab-panel.active { display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .card-title {
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    /* ── SKILLS TAGS ── */
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+    }
+
+    .skill-tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(55, 48, 163, 0.2);
+    }
+
+    /* ── CHARTS ── */
+    .chart-wrap {
+      position: relative;
+      height: 350px;
+      margin: 1.5rem 0;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding: 1rem 0;
+    }
+
+    .timeline-item {
+      margin-bottom: 2.5rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--card-bg);
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item .role {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .timeline-item .dates {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .timeline-item ul {
+      list-style: none;
+      margin-top: 0.8rem;
+    }
+
+    .timeline-item li {
+      margin-bottom: 0.6rem;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .timeline-item li strong {
+      color: var(--primary);
+    }
+
+    /* ── ACHIEVEMENT CARDS ── */
+    .achievement-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .achievement-card {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a5f8f 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(26, 60, 94, 0.2);
+    }
+
+    .achievement-card .number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .achievement-card .label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    /* ── COVER LETTER ── */
+    .cover-letter {
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .cover-letter p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    /* ── BUTTONS ── */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.95rem;
+    }
+
+    button:hover {
+      background: #2a5f8f;
+    }
+
+    button.secondary {
+      background: var(--card-bg);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    button.secondary:hover {
+      background: var(--tag-bg);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .tagline { font-size: 1rem; }
+      .tabs-bar { flex-direction: column; }
+      .tab-btn { padding: 0.8rem 1rem; font-size: 0.85rem; }
+      .card { padding: 1.5rem; }
+      .container { padding: 1.5rem 1rem; }
+      .achievement-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-avatar">SM</div>
+    <h1>Shannon C. Milder</h1>
+    <p class="tagline">Market Expansion • Revenue Growth • Strategic Business Development</p>
+    <div class="hero-contact">
+      <a href="tel:7372159522">📞 737.215.9522</a>
+      <a href="mailto:shannoncmilder@gmail.com">✉️ shannoncmilder@gmail.com</a>
+      <a href="https://www.linkedin.com/in/shancmilder" target="_blank">🔗 LinkedIn</a>
+      <a href="#">📍 Austin, TX</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TABS NAVIGATION
+══════════════════════════════════════════════════════════════ -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('experience')">Experience</button>
+  <button class="tab-btn" onclick="switchTab('achievements')">Achievements</button>
+  <button class="tab-btn" onclick="switchTab('cover-letter')">Cover Letter</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB: OVERVIEW
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="container">
+    <div class="button-group">
+      <button onclick="window.print()">🖨️ Print / Save PDF</button>
+      <button class="secondary" onclick="copyEmail()">📋 Copy Email</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Professional Summary</div>
+      <p>Market expansion and revenue development professional with more than 15 years of experience building territories, launching new markets, and strengthening commercial partnerships across competitive industries. Recognized for disciplined sales execution, consultative client engagement, and consistent production within both emerging and established markets.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Core Competencies</div>
+      <div class="skills-grid">
+        <span class="skill-tag">Market Expansion</span>
+        <span class="skill-tag">Territory Development</span>
+        <span class="skill-tag">Revenue Growth</span>
+        <span class="skill-tag">Sales Leadership</span>
+        <span class="skill-tag">Client Relationship Management</span>
+        <span class="skill-tag">Business Development</span>
+        <span class="skill-tag">Account Management</span>
+        <span class="skill-tag">Strategic Partnerships</span>
+        <span class="skill-tag">Commercial Sales</span>
+        <span class="skill-tag">Market Launch</span>
+        <span class="skill-tag">Sales Execution</span>
+        <span class="skill-tag">Consultative Selling</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Market Expansion Profile</div>
+      <div class="chart-wrap">
+        <canvas id="radarChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB: EXPERIENCE
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-experience" class="tab-panel">
+  <div class="container">
+    <div class="card">
+      <div class="card-title">Professional Experience</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3><span class="role">MilderLife Consulting</span></h3>
+          <p><strong>Founder & Principal | Interim Market Expansion & Business Development</strong> <span class="dates">2023–Present</span></p>
+          <ul>
+            <li>Support organizations in interim sales and business development engagements focused on expanding market presence and client acquisition.</li>
+            <li>Participate in defined-term assignments helping companies strengthen regional market activity and develop new commercial relationships.</li>
+            <li>Assist organizations entering new markets or expanding within existing territories through direct client engagement.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3><span class="role">Swel Janitorial Group</span></h3>
+          <p><strong>Regional Sales Director</strong> <span class="dates">2021–2023</span></p>
+          <ul>
+            <li>Launched the Austin market and generated more than <strong>$1M in revenue</strong> within the first five months.</li>
+            <li>Expanded company presence into <strong>seven southern markets</strong> through disciplined territory development.</li>
+            <li>Closed high-value commercial agreements and developed long-term service relationships.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3><span class="role">Paul Davis Restoration</span></h3>
+          <p><strong>Commercial Account Manager</strong> <span class="dates">2019–2020</span></p>
+          <ul>
+            <li>Developed partnerships with property managers and commercial organizations requiring restoration services.</li>
+            <li>Managed time-sensitive project opportunities and maintained client relationships through the sales cycle.</li>
+            <li>Strengthened recurring business relationships within property management and commercial markets.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3><span class="role">Waterlogic USA</span></h3>
+          <p><strong>Area Sales Executive</strong> <span class="dates">2017–2019</span></p>
+          <ul>
+            <li>Recognized among <strong>top national performers</strong> in revenue production and territory growth.</li>
+            <li>Managed full-cycle B2B sales including prospecting, presentations, and contract execution.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3><span class="role">Redbox Automated Entertainment</span></h3>
+          <p><strong>Regional Sales Manager</strong> <span class="dates">2008–2016</span></p>
+          <ul>
+            <li>Expanded regional placement footprint from approximately <strong>50 locations to more than 1,000 placements</strong>.</li>
+            <li>Increased regional revenue by <strong>more than 200 percent</strong> through disciplined account development.</li>
+            <li>Negotiated retail agreements with national and regional partners.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="timelineChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB: ACHIEVEMENTS
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-achievements" class="tab-panel">
+  <div class="container">
+    <div class="card">
+      <div class="card-title">Key Achievements</div>
+      <div class="achievement-cards">
+        <div class="achievement-card">
+          <div class="number">15+</div>
+          <div class="label">Years of Experience</div>
+        </div>
+        <div class="achievement-card">
+          <div class="number">$1M+</div>
+          <div class="label">Austin Revenue (5 months)</div>
+        </div>
+        <div class="achievement-card">
+          <div class="number">20x</div>
+          <div class="label">Territory Expansion</div>
+        </div>
+        <div class="achievement-card">
+          <div class="number">200%+</div>
+          <div class="label">Revenue Growth</div>
+        </div>
+        <div class="achievement-card">
+          <div class="number">7</div>
+          <div class="label">Markets Launched</div>
+        </div>
+        <div class="achievement-card">
+          <div class="number">Top 5</div>
+          <div class="label">National Ranking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chart-wrap">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chart-wrap">
+        <canvas id="territoryChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB: COVER LETTER
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-cover-letter" class="tab-panel">
+  <div class="container">
+    <div class="card">
+      <div class="card-title">Cover Letter</div>
+      <div class="cover-letter">
+        <p>Dear Hiring Committee,</p>
+
+        <p>I have spent more than fifteen years expanding markets, developing territories, and generating consistent revenue growth across competitive industries. My background includes launching new markets, strengthening regional sales presence, and building long-term commercial partnerships that support sustained expansion.</p>
+
+        <p>While I have held leadership responsibilities throughout my career, my greatest value has consistently come from disciplined execution — identifying opportunity, building trusted relationships, and converting those opportunities into measurable revenue performance.</p>
+
+        <p>Through my work with MilderLife Consulting, I have supported organizations in interim sales and business development engagements, helping companies expand into new markets, strengthen customer relationships, and accelerate growth during defined assignment periods.</p>
+
+        <p>I am particularly interested in organizations focused on market expansion and long-term revenue development, where disciplined execution, accountability, and relationship-driven sales performance are valued.</p>
+
+        <p>Sincerely,<br>
+        Shannon C. Milder<br>
+        737.215.9522<br>
+        shannoncmilder@gmail.com</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Shannon C. Milder — Market Expansion & Revenue Growth Professional | Austin, TX | © 2026
+</div>
+
+<script>
+  // ── TAB SWITCHING ──
+  function switchTab(tabName) {
+    const panels = document.querySelectorAll('.tab-panel');
+    const buttons = document.querySelectorAll('.tab-btn');
+    
+    panels.forEach(p => p.classList.remove('active'));
+    buttons.forEach(b => b.classList.remove('active'));
+    
+    document.getElementById('tab-' + tabName).classList.add('active');
+    event.target.classList.add('active');
+    
+    // Trigger chart resize
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+  }
+
+  // ── COPY EMAIL ──
+  function copyEmail() {
+    navigator.clipboard.writeText('shannoncmilder@gmail.com');
+    alert('Email copied to clipboard!');
+  }
+
+  // ── CHART CONFIGURATION ──
+  const PRIMARY = '#1a3c5e';
+  const ACCENT  = '#e87722';
+
+  // ── RADAR CHART ──
+  const radarCtx = document.getElementById('radarChart');
+  if (radarCtx) {
+    new Chart(radarCtx, {
+      type: 'radar',
+      data: {
+        labels: ['Market Expansion', 'Territory Development', 'Revenue Growth', 'Client Relationships', 'Sales Leadership', 'Business Development', 'Strategic Partnerships', 'Sales Execution'],
+        datasets: [{
+          label: 'Market Expansion Competency',
+          data: [98, 96, 94, 92, 88, 90, 91, 95],
+          backgroundColor: 'rgba(232,119,34,0.15)',
+          borderColor: ACCENT,
+          borderWidth: 2.5,
+          pointBackgroundColor: ACCENT,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            min: 60,
+            max: 100,
+            ticks: { display: false },
+            grid: { color: '#e2e8f0' }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  }
+
+  // ── TIMELINE CHART ──
+  const timelineCtx = document.getElementById('timelineChart');
+  if (timelineCtx) {
+    new Chart(timelineCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Redbox\n(2008–16)', 'Waterlogic\n(2017–19)', 'Paul Davis\n(2019–20)', 'Swel\n(2021–23)', 'MilderLife\n(2023–Now)'],
+        datasets: [{
+          label: 'Years of Experience',
+          data: [8, 2, 1, 2, 1.5],
+          backgroundColor: [PRIMARY, '#2a5f8f', '#3a7fbf', ACCENT, '#f5a55e'],
+          borderRadius: 6,
+          borderSkipped: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        scales: {
+          x: { stacked: true, title: { display: true, text: 'Years of Experience' }, grid: { color: '#f0f0f0' } },
+          y: { stacked: true, grid: { display: false } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+  }
+
+  // ── REVENUE IMPACT CHART ──
+  const revenueCtx = document.getElementById('revenueChart');
+  if (revenueCtx) {
+    new Chart(revenueCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Redbox\n(2008–16)', 'Waterlogic\n(2017–19)', 'Paul Davis\n(2019–20)', 'Swel\n(2021–23)', 'MilderLife\n(2023–Now)'],
+        datasets: [{
+          label: 'Revenue Impact Score',
+          data: [95, 82, 75, 98, 70],
+          backgroundColor: [PRIMARY, '#2a5f8f', '#3a7fbf', ACCENT, '#f5a55e'],
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { beginAtZero: true, max: 100, grid: { color: '#f0f0f0' } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+  }
+
+  // ── TERRITORY GROWTH CHART ──
+  const territoryCtx = document.getElementById('territoryChart');
+  if (territoryCtx) {
+    new Chart(territoryCtx, {
+      type: 'line',
+      data: {
+        labels: ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+        datasets: [{
+          label: 'Territory Locations',
+          data: [50, 120, 200, 320, 450, 600, 750, 900, 1000],
+          borderColor: ACCENT,
+          backgroundColor: 'rgba(232,119,34,0.1)',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: ACCENT,
+          tension: 0.4,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { beginAtZero: true, grid: { color: '#f0f0f0' } }
+        },
+        plugins: { legend: { display: true } }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
